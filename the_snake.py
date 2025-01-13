@@ -55,6 +55,7 @@ class GameObject:
 
 class Apple(GameObject):
     """Обозначаем яблоко."""
+    
     def __init__(self):
         """Инициализируем яблоко и определяем местоположение яблока."""
         super().__init__()
@@ -78,6 +79,7 @@ class Apple(GameObject):
 
 class Snake(GameObject):
     """Обозначаем змейку в игре."""
+    
     def __init__(self):
         """Инициализирует змейку по умолчанию."""
         super().__init__()
