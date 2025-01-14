@@ -60,7 +60,6 @@ class Apple(GameObject):
         """Инициализируем яблоко и определяем местоположение яблока."""
         super().__init__()
         self.body_color = APPLE_COLOR
-        self.randomize_positions()
 
     def randomize_positions(self, snake_positions=None):
         """Определяем местоположение яблока случайным образом."""
