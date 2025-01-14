@@ -61,8 +61,9 @@ class Apple(GameObject):
         super().__init__()
         self.body_color = APPLE_COLOR
 
-    def randomize_positions(self, snake_positions=None):
+    def randomize_positions(self, snake_positions = None):
         """Определяем местоположение яблока случайным образом."""
+
         while True:
             self.position = (randint(0, GRID_WIDTH - 1) * GRID_SIZE,
                              randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
