@@ -1,5 +1,4 @@
 from random import randint
-
 import pygame
 
 # Константы для размеров поля и сетки:
@@ -14,16 +13,10 @@ DOWN = (0, 1)
 LEFT = (-1, 0)
 RIGHT = (1, 0)
 
-# Цвет фона - черный:
+# Цвета:
 BOARD_BACKGROUND_COLOR = (0, 0, 0)
-
-# Цвет границы ячейки
 BORDER_COLOR = (93, 216, 228)
-
-# Цвет яблока
 APPLE_COLOR = (255, 0, 0)
-
-# Цвет змейки
 SNAKE_COLOR = (0, 255, 0)
 
 # Скорость движения змейки:
@@ -31,21 +24,16 @@ SPEED = 20
 
 # Настройка игрового окна:
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
-
-# Заголовок окна игрового поля:
 pygame.display.set_caption('Змейка')
-
-# Настройка времени:
 clock = pygame.time.Clock()
 
 
-# Тут опишите все классы игры.
 class GameObject:
     """Родительский класс."""
 
     def __init__(self):
         """Инициализируем объект."""
-        self.position = ((SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2))
+        self.position = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         self.body_color = None
 
     def draw(self):
@@ -63,7 +51,6 @@ class Apple(GameObject):
 
     def randomize_position(self, snake_positions=None):
         """Определяем местоположение яблока случайным образом."""
-
         while True:
             self.position = (randint(0, GRID_WIDTH - 1) * GRID_SIZE,
                              randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
@@ -155,9 +142,7 @@ def handle_keys(game_object):
 
 def main():
     """Основная функция для запуска игры."""
-    # Инициализация PyGame:
     pygame.init()
-    # Тут нужно создать экземпляры классов.
     apple = Apple()
     snake = Snake()
 
