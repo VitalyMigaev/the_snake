@@ -61,7 +61,7 @@ class Apple(GameObject):
         super().__init__()
         self.body_color = APPLE_COLOR
 
-    def randomize_positions(self, snake_positions=None):
+    def randomize_position(self, snake_positions=None):
         """Определяем местоположение яблока случайным образом."""
 
         while True:
@@ -166,7 +166,7 @@ def main():
         handle_keys(snake)
         if snake.get_head_position() == apple.position:
             snake.length += 1
-            apple.randomize_positions(snake.positions)
+            apple.randomize_position(snake.positions)
         snake.update_direction()
         snake.move()
         if snake.get_head_position() in snake.positions[1:]:
