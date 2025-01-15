@@ -76,11 +76,15 @@ class Snake(GameObject):
         self.direction = RIGHT
         self.last = None
 
-    def update_direction(self):
+    def update_direction(self, new_direction):
         """Обновляет направление движения змеи на основе данных."""
-        if self.next_direction:
-            self.direction = self.next_direction
-            self.next_direction = None
+        if new_direction and (
+            (new_direction == UP and self.direction != DOWN) or
+            (new_direction == DOWN and self.direction != UP) or
+            (new_direction == LEFT and self.direction != RIGHT) or
+            (new_direction == RIGHT and self.direction != LEFT)
+        ):
+            self.direction = new_direction
 
     def move(self):
         """Двигаем змейку в текущем направлении."""
@@ -148,12 +152,14 @@ def main():
         clock.tick(SPEED)
         handle_keys(snake)
 
+        # Проверка на столкновение с яблоком
         if snake.get_head_position() == apple.position:
             snake.length += 1
             apple.randomize_position(snake.positions)
 
         snake.move()
 
+        # Проверка на столкновение с самим собой
         if snake.get_head_position() in snake.positions[1:]:
             snake.reset()
 
@@ -165,3 +171,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
