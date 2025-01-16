@@ -34,6 +34,7 @@ INITIAL_POSITION = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
 
 class GameObject:
     """Родительский класс."""
+
     def __init__(self, position=INITIAL_POSITION, body_color=None):
         """Инициализируем объект."""
         self.position = position
@@ -54,6 +55,7 @@ class GameObject:
 
 class Apple(GameObject):
     """Обозначаем яблоко."""
+
     def __init__(self, snake_positions=None, body_color=APPLE_COLOR):
         """Инициализируем яблоко и определяем местоположение яблока."""
         super().__init__(body_color=body_color)
@@ -73,6 +75,7 @@ class Apple(GameObject):
 
 class Snake(GameObject):
     """Обозначаем змейку в игре."""
+
     def __init__(self, body_color=SNAKE_COLOR):
         """Инициализируем змейку по умолчанию."""
         super().__init__(body_color=body_color)
