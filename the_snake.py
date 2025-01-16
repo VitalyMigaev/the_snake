@@ -82,6 +82,7 @@ class Snake(GameObject):
         self.length = 1
         self.positions = [self.position]
         self.direction = RIGHT
+        self.last = None
 
     def update_direction(self, new_direction):
         """Обновляет направление движения змеи на основе данных."""
@@ -120,6 +121,7 @@ class Snake(GameObject):
         self.length = 1
         self.positions = [self.position]
         self.direction = RIGHT
+        self.last = None
 
 
 def handle_keys(snake):
@@ -152,7 +154,7 @@ def main():
         clock.tick(SPEED)
         handle_keys(snake)
 
-        if snake.get_head_position() in snake.positions[4:]:
+        if snake.get_head_position() in snake.positions[1:]:
             snake.reset()
 
         snake.move()
