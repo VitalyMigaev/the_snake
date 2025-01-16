@@ -34,7 +34,6 @@ INITIAL_POSITION = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
 
 class GameObject:
     """Родительский класс."""
-
     def __init__(self, position=INITIAL_POSITION, body_color=None):
         """Инициализируем объект."""
         self.position = position
@@ -55,7 +54,6 @@ class GameObject:
 
 class Apple(GameObject):
     """Обозначаем яблоко."""
-
     def __init__(self, snake_positions=None, body_color=APPLE_COLOR):
         """Инициализируем яблоко и определяем местоположение яблока."""
         super().__init__(body_color=body_color)
@@ -75,7 +73,6 @@ class Apple(GameObject):
 
 class Snake(GameObject):
     """Обозначаем змейку в игре."""
-
     def __init__(self, body_color=SNAKE_COLOR):
         """Инициализируем змейку по умолчанию."""
         super().__init__(body_color=body_color)
@@ -86,13 +83,12 @@ class Snake(GameObject):
 
     def update_direction(self, new_direction):
         """Обновляет направление движения змеи на основе данных."""
-        opposites = {
-                    UP: DOWN,
-                    DOWN: UP,
-                    LEFT: RIGHT,
-                    RIGHT: LEFT
-                }
-        if new_direction and new_direction != opposites[self.direction]:
+        if new_direction and (
+            (new_direction == UP and self.direction != DOWN) or
+            (new_direction == DOWN and self.direction != UP) or
+            (new_direction == LEFT and self.direction != RIGHT) or
+            (new_direction == RIGHT and self.direction != LEFT)
+        ):
             self.direction = new_direction
 
     def move(self):
@@ -155,15 +151,14 @@ def main():
         clock.tick(SPEED)
         handle_keys(snake)
 
-        # Двигаем змейку
+        if snake.get_head_position() in snake.positions[1:]:
+            snake.reset()
+
         snake.move()
 
-        # Проверка на столкновение с яблоком и с самим собой
         if snake.get_head_position() == apple.position:
             snake.length += 1
             apple.randomize_position(snake.positions)
-        elif snake.get_head_position() in snake.positions[4:]:
-            snake.reset()
 
         screen.fill(BOARD_BACKGROUND_COLOR)
         apple.draw()
@@ -173,3 +168,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
