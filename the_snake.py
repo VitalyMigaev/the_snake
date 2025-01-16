@@ -86,12 +86,13 @@ class Snake(GameObject):
 
     def update_direction(self, new_direction):
         """Обновляет направление движения змеи на основе данных."""
-        if new_direction and (
-            (new_direction == UP and self.direction != DOWN) or
-            (new_direction == DOWN and self.direction != UP) or
-            (new_direction == LEFT and self.direction != RIGHT) or
-            (new_direction == RIGHT and self.direction != LEFT)
-        ):
+        opposites = {
+                    UP: DOWN,
+                    DOWN: UP,
+                    LEFT: RIGHT,
+                    RIGHT: LEFT
+                }
+        if new_direction and new_direction != opposites[self.direction]:
             self.direction = new_direction
 
     def move(self):
